@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -20,10 +21,28 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   @override
   Stream<PostState> mapEventToState(PostEvent event) async* {
-    // TODO: implement mapEventToState
+    if (event is PostChanged) {
+      yield* _mapPostChangedToState(event);
+    } else if (event is PostAdded) {
+      yield* _mapPostAddedToState(event);
+    } else if (event is PostInitial) {
+      // pass
+    }
   }
 
-  void _onPostChanged(List<FirestorePost> posts) => add(PostAdded());
+  void _onPostChanged(List<FirestorePost> posts) => add(PostChanged(posts));
+
+  Stream<PostState> _mapPostAddedToState(PostAdded event) async* {
+    await _postsRepository.addNewPost(event.post);
+  }
+
+  Stream<PostState> _mapPostChangedToState(PostChanged event) async* {
+    try {
+      yield PostLoadingSuccess(posts: event.posts);
+    } on Exception {
+      yield PostLoadingFailure(posts: event.posts);
+    }
+  }
 
   @override
   Future<void> close() {

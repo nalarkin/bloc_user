@@ -21,8 +21,18 @@ class PostLoadingSuccess extends PostState {
   List<Object> get props => [posts];
 
   @override
-  String toString() => 'PostsLoaded { todos: $posts }';
+  String toString() => 'PostLoadingSuccess { todos: $posts }';
 
 }
+class PostLoadingFailure extends PostState {
+  PostLoadingFailure({this.posts = const <FirestorePost>[],});
 
-class PostLoadingFailure extends PostState {}
+  final List<FirestorePost> posts;
+
+  @override
+  List<Object> get props => [posts];
+
+  @override
+  String toString() => 'PostsLoadingFailure { todos: $posts }';
+
+}
