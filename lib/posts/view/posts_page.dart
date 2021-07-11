@@ -7,11 +7,11 @@ class PostsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Post')),
+      appBar: AppBar(title: const Text('Posts')),
       body: BlocProvider(
         create: (_) =>
-            PostBloc(postsRepository: context.read<FirestorePostsRepository>()),
-        child: PostsList(),
+            PostBloc(postsRepository: context.read<PostsRepository>()),
+        child: const PostsList(),
       ),
     );
   }

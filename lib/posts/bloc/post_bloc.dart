@@ -24,7 +24,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     if (event is PostChanged) {
       yield* _mapPostChangedToState(event);
     } else if (event is PostAdded) {
-      yield* _mapPostAddedToState(event);
+      await _mapPostAddedToState(event);
     } else if (event is PostInitial) {
       // pass
     }
@@ -32,7 +32,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   void _onPostChanged(List<FirestorePost> posts) => add(PostChanged(posts));
 
-  Stream<PostState> _mapPostAddedToState(PostAdded event) async* {
+  Future<void> _mapPostAddedToState(PostAdded event) async {
     await _postsRepository.addNewPost(event.post);
   }
 
