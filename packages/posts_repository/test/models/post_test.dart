@@ -13,7 +13,7 @@ void main() {
     var date = Timestamp.fromMillisecondsSinceEpoch(1609459200000);
     const read = false;
 
-    test('FirebaseUser value equality', () {
+    test('FirestorePost value equality', () {
       expect(
         FirestorePost(
             id: id,
@@ -32,7 +32,7 @@ void main() {
       );
     });
 
-    test('FirebaseUser copyWith copies the correct values', () {
+    test('FirestorePost copyWith copies the correct values', () {
       var beforeChange = FirestorePost(
           id: id,
           idFrom: idFrom,
@@ -58,7 +58,7 @@ void main() {
               content: 'updated-content'),
           expectedChange);
     });
-    test('FirebaseUser copyWith maintains all values not provided.', () {
+    test('FirestorePost copyWith maintains all values not provided.', () {
       var beforeChange = FirestorePost(
           id: id,
           idFrom: idFrom,
@@ -69,7 +69,7 @@ void main() {
       expect(beforeChange.copyWith(), beforeChange);
     });
 
-    test('FirebaseUser sucessfully converts to UserEntity', () {
+    test('FirestorePost sucessfully converts to PostEntity', () {
       final post = FirestorePost(
           id: id,
           idFrom: idFrom,
@@ -88,7 +88,7 @@ void main() {
       expect(post.toEntity(), entity);
     });
 
-    test('Firestore user is created given an UserEntity.', () {
+    test('FirestorePost is created when given an PostEntity.', () {
       final user = FirestorePost(
           id: id,
           idFrom: idFrom,

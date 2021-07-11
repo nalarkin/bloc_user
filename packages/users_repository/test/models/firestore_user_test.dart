@@ -13,7 +13,7 @@ void main() {
     var joinDate = Timestamp.fromMillisecondsSinceEpoch(1609459200000);
     const username = 'mock-username';
 
-    test('FirebaseUser value equality', () {
+    test('FirestoreUser value equality', () {
       expect(
         FirestoreUser(
             id: id,
@@ -32,7 +32,7 @@ void main() {
       );
     });
 
-    test('FirebaseUser copyWith copies the correct values', () {
+    test('FirestoreUser copyWith copies the correct values', () {
       var beforeChange = FirestoreUser(
           id: id,
           email: email,
@@ -57,7 +57,7 @@ void main() {
               joinDate: Timestamp.fromMillisecondsSinceEpoch(1209459200000)),
           expectedChange);
     });
-    test('FirebaseUser copyWith maintains all values not provided.', () {
+    test('FirestoreUser copyWith maintains all values not provided.', () {
       var beforeChange = FirestoreUser(
           id: id,
           email: email,
@@ -68,7 +68,7 @@ void main() {
       expect(beforeChange.copyWith(), beforeChange);
     });
 
-    test('FirebaseUser sucessfully converts to UserEntity', () {
+    test('FirestoreUser sucessfully converts to UserEntity', () {
       final user = FirestoreUser(
           id: id,
           email: email,
@@ -87,7 +87,7 @@ void main() {
       expect(user.toEntity(), entity);
     });
 
-    test('Firestore user is created given an UserEntity.', () {
+    test('FirestoreUser is created when given an UserEntity.', () {
       final user = FirestoreUser(
           id: id,
           email: email,
