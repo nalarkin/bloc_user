@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../users_repository.dart';
+// import '../../users_repository.dart';
+import 'package:users_repository/users_repository.dart';
 
 class FirestoreUser extends Equatable {
   const FirestoreUser({

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../users_repository.dart';
+import 'package:users_repository/users_repository.dart';
 
 abstract class UsersRepository {
   Future<void> addNewUser(FirestoreUser user);

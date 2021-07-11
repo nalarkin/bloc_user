@@ -7,26 +7,26 @@ class FirestorePostsRepository implements PostsRepository {
   final usersCollection = FirebaseFirestore.instance.collection('posts');
 
   @override
-  Future<void> addNewPost(FirestorePosts post) {
+  Future<void> addNewPost(FirestorePost post) {
     return usersCollection.doc(post.id).set((post.toEntity().toDocument()));
   }
 
   @override
-  Future<void> deletePost(FirestorePosts post) async {
+  Future<void> deletePost(FirestorePost post) async {
     return usersCollection.doc(post.id).delete();
   }
 
   @override
-  Stream<List<FirestorePosts>> posts() {
+  Stream<List<FirestorePost>> posts() {
     return usersCollection.snapshots().map((snapshot) {
       return snapshot.docs
-          .map((doc) => FirestorePosts.fromEntity(PostEntity.fromSnapshot(doc)))
+          .map((doc) => FirestorePost.fromEntity(PostEntity.fromSnapshot(doc)))
           .toList();
     });
   }
 
   @override
-  Future<void> updatePost(FirestorePosts post) {
+  Future<void> updatePost(FirestorePost post) {
     return usersCollection.doc(post.id).update(post.toEntity().toDocument());
   }
 }

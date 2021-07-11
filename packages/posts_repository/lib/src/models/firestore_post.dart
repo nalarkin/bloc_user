@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 
 import '../../posts_repository.dart';
 
-class FirestorePosts extends Equatable {
-  const FirestorePosts({
+class FirestorePost extends Equatable {
+  const FirestorePost({
     required this.id,
     required this.idFrom,
     required this.idTo,
@@ -20,14 +20,14 @@ class FirestorePosts extends Equatable {
   final bool read;
   final Timestamp date;
 
-  FirestorePosts copyWith(
+  FirestorePost copyWith(
       {String? id,
       String? idFrom,
       String? idTo,
       String? content,
       bool? read,
       Timestamp? date}) {
-    return FirestorePosts(
+    return FirestorePost(
       id: id ?? this.id,
       idFrom: idFrom ?? this.idFrom,
       idTo: idTo ?? this.idTo,
@@ -58,8 +58,8 @@ class FirestorePosts extends Equatable {
     );
   }
 
-  static FirestorePosts fromEntity(PostEntity entity) {
-    return FirestorePosts(
+  static FirestorePost fromEntity(PostEntity entity) {
+    return FirestorePost(
       id: entity.id,
       idFrom: entity.idFrom,
       idTo: entity.idTo,
