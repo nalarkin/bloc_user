@@ -7,11 +7,14 @@ import 'package:mocktail/mocktail.dart';
 import 'package:flutter_firebase_login/app/app.dart';
 import 'package:flutter_firebase_login/home/home.dart';
 import 'package:flutter_firebase_login/login/login.dart';
+import 'package:posts_repository/posts_repository.dart';
 
 class MockUser extends Mock implements User {}
 
 class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
+class MockPostsRepository extends Mock
+    implements PostsRepository {}
 
 class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {}
 
@@ -22,6 +25,7 @@ class FakeAppState extends Fake implements AppState {}
 void main() {
   group('App', () {
     late AuthenticationRepository authenticationRepository;
+    late PostsRepository postsRepository;
     late User user;
 
     setUpAll(() {
@@ -31,6 +35,7 @@ void main() {
 
     setUp(() {
       authenticationRepository = MockAuthenticationRepository();
+      postsRepository = MockPostsRepository();
       user = MockUser();
       when(() => authenticationRepository.user).thenAnswer(
         (_) => const Stream.empty(),
@@ -43,7 +48,8 @@ void main() {
 
     testWidgets('renders AppView', (tester) async {
       await tester.pumpWidget(
-        App(authenticationRepository: authenticationRepository),
+        App(authenticationRepository: authenticationRepository,
+          postsRepository: postsRepository,),
       );
       await tester.pump();
       expect(find.byType(AppView), findsOneWidget);
