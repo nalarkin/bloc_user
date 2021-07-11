@@ -56,7 +56,7 @@ class PostEntity extends Equatable {
   }
 
   static PostEntity fromSnapshot(DocumentSnapshot snap) {
-    final data = snap.data() as Map<String, dynamic>;
+    final data = snap.data() as Map<String, dynamic>?;
     if (data == null) throw Exception();
     return PostEntity(
       id: data['id'] as String,

@@ -55,7 +55,7 @@ class UserEntity extends Equatable {
   }
 
   static UserEntity fromSnapshot(DocumentSnapshot snap) {
-    final data = snap.data() as Map<String, dynamic>;
+    final data = snap.data() as Map<String, dynamic>?;
     if (data == null) throw Exception();
     return UserEntity(
       id: data['id'],
