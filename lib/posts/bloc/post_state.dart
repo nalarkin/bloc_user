@@ -21,7 +21,7 @@ class PostLoadingSuccess extends PostState {
   List<Object> get props => [posts];
 
   @override
-  String toString() => 'PostLoadingSuccess { todos: $posts }';
+  String toString() => 'PostLoadingSuccess { posts: $posts }';
 
 }
 class PostLoadingFailure extends PostState {
@@ -33,6 +33,6 @@ class PostLoadingFailure extends PostState {
   List<Object> get props => [posts];
 
   @override
-  String toString() => 'PostsLoadingFailure { todos: $posts }';
+  String toString() => 'PostsLoadingFailure { posts: $posts }';
 
 }

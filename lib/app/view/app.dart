@@ -41,31 +41,30 @@ class App extends StatelessWidget {
   //     child: const AppView(),
   //   );
   // }
-    @override
+  @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider.value(
-          value: _authenticationRepository,),
-        RepositoryProvider.value(
-          value: _postsRepository,
-        ),
-      ],
-      child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-              create: (_) => AppBloc(
-                    authenticationRepository: _authenticationRepository,
-                  )),
-          BlocProvider(
-              create: (_) => PostBloc(
-                    postsRepository: _postsRepository,
-                  )),
+          RepositoryProvider.value(
+            value: _authenticationRepository,
+          ),
+          RepositoryProvider.value(
+            value: _postsRepository,
+          ),
         ],
-        child: const AppView(),
-      )
-      
-    );
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (_) => AppBloc(
+                      authenticationRepository: _authenticationRepository,
+                    )),
+            BlocProvider(
+                create: (_) => PostBloc(
+                      postsRepository: _postsRepository,
+                    )),
+          ],
+          child: const AppView(),
+        ));
   }
 }
 
